@@ -1,0 +1,136 @@
+{
+  "updatedAt": "2025-11-27T13:59:16.000Z",
+  "createdAt": "2025-11-20T13:26:20.924Z",
+  "id": "tOaofdPTjPwicIpx",
+  "name": "Bote tekegram 1",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "71f4cad2-0456-4868-bd34-f274a0dca889",
+      "name": "Telegram Trigger",
+      "webhookId": "6d675774-c9cd-4e96-83bc-653c0a80c679",
+      "credentials": {
+        "telegramApi": {
+          "id": "L6csDXMJ7IQgLEt4",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}{{ $json.message.text }}",
+        "text": "=Eco:  {{ $json.message.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "69634e87-6e0c-4401-8a4f-1c1f0b2d5b28",
+      "name": "Send a text message",
+      "webhookId": "f0cec2e7-ca88-40fa-bc8e-611e440bd9c4",
+      "credentials": {
+        "telegramApi": {
+          "id": "L6csDXMJ7IQgLEt4",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "afef1936-4b5e-45b5-bac2-fee43f2cbe0c",
+  "versionCounter": 10,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-20T13:26:20.926Z",
+      "createdAt": "2025-11-20T13:26:20.926Z",
+      "role": "workflow:owner",
+      "workflowId": "tOaofdPTjPwicIpx",
+      "projectId": "8XkeMWGzbCQjcmEa",
+      "project": {
+        "updatedAt": "2025-11-19T14:27:28.265Z",
+        "createdAt": "2025-11-19T14:25:00.693Z",
+        "id": "8XkeMWGzbCQjcmEa",
+        "name": "Max Ballovar <maxballovar80@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "projectRelations": [
+          {
+            "updatedAt": "2025-11-19T14:25:00.694Z",
+            "createdAt": "2025-11-19T14:25:00.694Z",
+            "userId": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
+            "projectId": "8XkeMWGzbCQjcmEa",
+            "user": {
+              "updatedAt": "2025-11-27T11:50:30.000Z",
+              "createdAt": "2025-11-19T14:25:00.359Z",
+              "id": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
+              "email": "maxballovar80@gmail.com",
+              "firstName": "Max",
+              "lastName": "Ballovar",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2025-11-19T14:27:43.210Z",
+                "personalization_survey_n8n_version": "1.120.4",
+                "companySize": "<20",
+                "companyType": "saas",
+                "role": "business-owner",
+                "reportedSource": "google"
+              },
+              "settings": {
+                "userActivated": true,
+                "easyAIWorkflowOnboarded": true,
+                "firstSuccessfulWorkflowId": "VQqsf0jHu6BhpIdX",
+                "userActivatedAt": 1764080062629
+              },
+              "disabled": false,
+              "mfaEnabled": false,
+              "lastActiveAt": "2025-11-27",
+              "isPending": false
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tags": []
+}
