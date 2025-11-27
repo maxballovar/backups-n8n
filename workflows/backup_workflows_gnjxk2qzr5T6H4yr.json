@@ -1,1 +1,422 @@
-workflows/backup_workflows_gnjxk2qzr5T6H4yr.json
+{
+  "updatedAt": "2025-11-27T13:06:00.000Z",
+  "createdAt": "2025-11-26T12:59:18.348Z",
+  "id": "gnjxk2qzr5T6H4yr",
+  "name": "backup workflows",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b980332a-ed81-479a-9449-e440a06f0409",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        176
+      ],
+      "id": "b9f93f42-c2dc-47d8-8339-9c24c8589fb3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "filters": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "id": "50f3e0d5-8728-469a-a671-1af4cf22efb2",
+      "name": "Get many workflows",
+      "credentials": {
+        "n8nApi": {
+          "id": "oopjLU4Ct5djq2yi",
+          "name": "n8n account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "a55328e5-83df-4b3a-81f4-5b52e94bf773",
+      "name": "Get a workflow",
+      "credentials": {
+        "n8nApi": {
+          "id": "oopjLU4Ct5djq2yi",
+          "name": "n8n account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = $input.all().map(data => {\n  const workflowData = data.json;\n  const name = workflowData.name || 'untitled';\n  const safeName = name.replace(/[^a-zA-Z0-9-_]/g, '_');\n  const contentString = JSON.stringify(workflowData, null, 2);\n\n  return {\n    json: {\n      // Nombre único con ID\n      fileName: `workflows/${safeName}_${workflowData.id}.json`,\n      content: contentString,\n      // Esto es VITAL para que el nodo HTTP funcione\n      contentBase64: Buffer.from(contentString).toString('base64'),\n      originalName: name\n    }\n  };\n});\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        0
+      ],
+      "id": "691f29aa-d26e-47a4-918d-900f6833e360",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/maxballovar/backups-n8n",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "backups-n8n",
+          "mode": "list",
+          "cachedResultName": "backups-n8n",
+          "cachedResultUrl": "https://github.com/maxballovar/backups-n8n"
+        },
+        "filePath": "={{ $json.fileName }}",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        944,
+        16
+      ],
+      "id": "7e19c894-5ed2-42fb-b590-796a5d6e38b6",
+      "name": "Get a file",
+      "webhookId": "eafaf190-49fe-4151-8437-42032d04867c",
+      "credentials": {
+        "githubApi": {
+          "id": "J8ZQwElZrIiQqEJ1",
+          "name": "GitHub account 4"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "97ce67ea-76ec-4d10-86ff-ed77134a0480",
+              "leftValue": "={{ $json.sha }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1104,
+        16
+      ],
+      "id": "47ae9f40-eebc-4e04-82fd-a55fe11620cd",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/maxballovar/backups-n8n",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "backups-n8n",
+          "mode": "list",
+          "cachedResultName": "backups-n8n",
+          "cachedResultUrl": "https://github.com/maxballovar/backups-n8n"
+        },
+        "filePath": "={{ $('Loop Over Items').item.json.fileName }}",
+        "fileContent": "={{ $('Loop Over Items').item.json.fileName }}",
+        "commitMessage": "=Backup inicial: {{ $('Code in JavaScript').item.json.fileName }}"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        96
+      ],
+      "id": "68141872-4cf1-49f2-bf0e-8932b0730223",
+      "name": "Create a file",
+      "webhookId": "6406c47d-4c23-4a6e-9901-9ef9815639f0",
+      "credentials": {
+        "githubApi": {
+          "id": "J8ZQwElZrIiQqEJ1",
+          "name": "GitHub account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/maxballovar/backups-n8n/contents/{{ $('Loop Over Items').first().json.fileName }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "=Actualización:{{ $('Loop Over Items').item.json.fileName }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $('Loop Over Items').first().json.contentBase64 }}"
+            },
+            {
+              "name": "sha",
+              "value": "={{ $json.sha }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1328,
+        -208
+      ],
+      "id": "27df00da-c6ff-47c9-95b7-c5b11f38a6f2",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        816,
+        16
+      ],
+      "id": "8d352c90-8002-4bbb-8024-206dcff7197d",
+      "name": "Loop Over Items"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many workflows": {
+      "main": [
+        [
+          {
+            "node": "Get a workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a workflow": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a file": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "24363e93-fb9e-4320-8c75-feffcf10f98e",
+  "versionCounter": 5,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-26T12:59:18.352Z",
+      "createdAt": "2025-11-26T12:59:18.352Z",
+      "role": "workflow:owner",
+      "workflowId": "gnjxk2qzr5T6H4yr",
+      "projectId": "8XkeMWGzbCQjcmEa",
+      "project": {
+        "updatedAt": "2025-11-19T14:27:28.265Z",
+        "createdAt": "2025-11-19T14:25:00.693Z",
+        "id": "8XkeMWGzbCQjcmEa",
+        "name": "Max Ballovar <maxballovar80@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "projectRelations": [
+          {
+            "updatedAt": "2025-11-19T14:25:00.694Z",
+            "createdAt": "2025-11-19T14:25:00.694Z",
+            "userId": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
+            "projectId": "8XkeMWGzbCQjcmEa",
+            "user": {
+              "updatedAt": "2025-11-27T11:50:30.000Z",
+              "createdAt": "2025-11-19T14:25:00.359Z",
+              "id": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
+              "email": "maxballovar80@gmail.com",
+              "firstName": "Max",
+              "lastName": "Ballovar",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2025-11-19T14:27:43.210Z",
+                "personalization_survey_n8n_version": "1.120.4",
+                "companySize": "<20",
+                "companyType": "saas",
+                "role": "business-owner",
+                "reportedSource": "google"
+              },
+              "settings": {
+                "userActivated": true,
+                "easyAIWorkflowOnboarded": true,
+                "firstSuccessfulWorkflowId": "VQqsf0jHu6BhpIdX",
+                "userActivatedAt": 1764080062629
+              },
+              "disabled": false,
+              "mfaEnabled": false,
+              "lastActiveAt": "2025-11-27",
+              "isPending": false
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tags": []
+}
