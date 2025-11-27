@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-27T14:06:02.000Z",
+  "updatedAt": "2025-11-27T14:39:48.000Z",
   "createdAt": "2025-11-24T13:52:38.286Z",
   "id": "VQqsf0jHu6BhpIdX",
   "name": "chatbot web",
@@ -143,6 +143,19 @@
       ],
       "id": "4090da6e-0ae2-4933-ae0d-b466d62ec06b",
       "name": "Analyze audio"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        336,
+        336
+      ],
+      "id": "e5638fd3-4d7b-471f-a437-f58c0700b3ac",
+      "name": "AI Agent1"
     }
   ],
   "connections": {
@@ -210,8 +223,8 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "13965c8a-084e-446f-a631-5248045fc923",
-  "versionCounter": 22,
+  "versionId": "72d1510b-3a82-496e-bf04-ad42dad8b181",
+  "versionCounter": 23,
   "triggerCount": 1,
   "shared": [
     {
