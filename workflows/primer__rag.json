@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-27T13:58:53.000Z",
+  "updatedAt": "2025-11-27T14:18:58.000Z",
   "createdAt": "2025-11-24T12:27:36.835Z",
   "id": "LmNOTwxNaK9r3OtK",
   "name": "primer  rag",
@@ -156,6 +156,19 @@
           "name": "Google Drive account"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        320,
+        -16
+      ],
+      "id": "d4c01582-c02b-4751-831a-d45082e28676",
+      "name": "AI Agent"
     }
   ],
   "connections": {
@@ -223,8 +236,8 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "9527157c-9019-4978-9c85-e71250894c69",
-  "versionCounter": 9,
+  "versionId": "36698c8b-d625-44f0-a479-235522643b17",
+  "versionCounter": 10,
   "triggerCount": 0,
   "shared": [
     {
