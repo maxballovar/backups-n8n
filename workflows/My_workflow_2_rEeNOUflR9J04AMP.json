@@ -1,1 +1,133 @@
-workflows/My_workflow_2_rEeNOUflR9J04AMP.json
+{
+  "updatedAt": "2025-11-21T08:23:17.000Z",
+  "createdAt": "2025-11-20T14:30:59.052Z",
+  "id": "rEeNOUflR9J04AMP",
+  "name": "My workflow 2",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "63118372-8886-4221-ae4a-eca920561b36",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "HOLA CREA UNA IMAGEN ETILO SALVADOR DALI"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c6ad6a04-26c4-4bb1-88cc-a74985fe9aa3",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "lB7o5FTwVYBfowOU",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "47adba6e-1ae4-487a-b8e0-b9d6fac6f078",
+  "versionCounter": 2,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-20T14:30:59.054Z",
+      "createdAt": "2025-11-20T14:30:59.054Z",
+      "role": "workflow:owner",
+      "workflowId": "rEeNOUflR9J04AMP",
+      "projectId": "8XkeMWGzbCQjcmEa",
+      "project": {
+        "updatedAt": "2025-11-19T14:27:28.265Z",
+        "createdAt": "2025-11-19T14:25:00.693Z",
+        "id": "8XkeMWGzbCQjcmEa",
+        "name": "Max Ballovar <maxballovar80@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "projectRelations": [
+          {
+            "updatedAt": "2025-11-19T14:25:00.694Z",
+            "createdAt": "2025-11-19T14:25:00.694Z",
+            "userId": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
+            "projectId": "8XkeMWGzbCQjcmEa",
+            "user": {
+              "updatedAt": "2025-11-27T11:50:30.000Z",
+              "createdAt": "2025-11-19T14:25:00.359Z",
+              "id": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
+              "email": "maxballovar80@gmail.com",
+              "firstName": "Max",
+              "lastName": "Ballovar",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2025-11-19T14:27:43.210Z",
+                "personalization_survey_n8n_version": "1.120.4",
+                "companySize": "<20",
+                "companyType": "saas",
+                "role": "business-owner",
+                "reportedSource": "google"
+              },
+              "settings": {
+                "userActivated": true,
+                "easyAIWorkflowOnboarded": true,
+                "firstSuccessfulWorkflowId": "VQqsf0jHu6BhpIdX",
+                "userActivatedAt": 1764080062629
+              },
+              "disabled": false,
+              "mfaEnabled": false,
+              "lastActiveAt": "2025-11-27",
+              "isPending": false
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tags": []
+}
