@@ -3,7 +3,6 @@
   "createdAt": "2025-11-24T13:52:38.286Z",
   "id": "VQqsf0jHu6BhpIdX",
   "name": "chatbot web",
-  "description": null,
   "active": false,
   "isArchived": false,
   "nodes": [
@@ -191,7 +190,6 @@
   },
   "pinData": {},
   "versionId": "8873033c-760b-4dc6-aa1b-ab79b9541542",
-  "versionCounter": 21,
   "triggerCount": 1,
   "shared": [
     {
@@ -199,51 +197,7 @@
       "createdAt": "2025-11-24T13:52:38.291Z",
       "role": "workflow:owner",
       "workflowId": "VQqsf0jHu6BhpIdX",
-      "projectId": "8XkeMWGzbCQjcmEa",
-      "project": {
-        "updatedAt": "2025-11-19T14:27:28.265Z",
-        "createdAt": "2025-11-19T14:25:00.693Z",
-        "id": "8XkeMWGzbCQjcmEa",
-        "name": "Max Ballovar <maxballovar80@gmail.com>",
-        "type": "personal",
-        "icon": null,
-        "description": null,
-        "projectRelations": [
-          {
-            "updatedAt": "2025-11-19T14:25:00.694Z",
-            "createdAt": "2025-11-19T14:25:00.694Z",
-            "userId": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
-            "projectId": "8XkeMWGzbCQjcmEa",
-            "user": {
-              "updatedAt": "2025-11-27T11:50:30.000Z",
-              "createdAt": "2025-11-19T14:25:00.359Z",
-              "id": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
-              "email": "maxballovar80@gmail.com",
-              "firstName": "Max",
-              "lastName": "Ballovar",
-              "personalizationAnswers": {
-                "version": "v4",
-                "personalization_survey_submitted_at": "2025-11-19T14:27:43.210Z",
-                "personalization_survey_n8n_version": "1.120.4",
-                "companySize": "<20",
-                "companyType": "saas",
-                "role": "business-owner",
-                "reportedSource": "google"
-              },
-              "settings": {
-                "userActivated": true,
-                "easyAIWorkflowOnboarded": true,
-                "firstSuccessfulWorkflowId": "VQqsf0jHu6BhpIdX",
-                "userActivatedAt": 1764080062629
-              },
-              "disabled": false,
-              "mfaEnabled": false,
-              "lastActiveAt": "2025-11-27",
-              "isPending": false
-            }
-          }
-        ]
-      }
+      "projectId": "8XkeMWGzbCQjcmEa"
     }
   ],
   "tags": []
