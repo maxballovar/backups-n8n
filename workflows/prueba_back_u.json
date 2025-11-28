@@ -83,7 +83,7 @@
             "userId": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
             "projectId": "8XkeMWGzbCQjcmEa",
             "user": {
-              "updatedAt": "2025-11-27T11:50:30.000Z",
+              "updatedAt": "2025-11-28T09:30:57.000Z",
               "createdAt": "2025-11-19T14:25:00.359Z",
               "id": "b19c2bc4-5802-46b0-8cfc-3e263d0f4f34",
               "email": "maxballovar80@gmail.com",
@@ -106,7 +106,7 @@
               },
               "disabled": false,
               "mfaEnabled": false,
-              "lastActiveAt": "2025-11-27",
+              "lastActiveAt": "2025-11-28",
               "isPending": false
             }
           }
